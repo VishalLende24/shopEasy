@@ -1,75 +1,69 @@
 <template>
-  <div class="bg-white shadow-md rounded-2xl p-4 w-full max-w-sm relative border">
-    <div class="flex justify-between items-start">
-      <h2 class="text-xl font-semibold text-gray-800">{{ name }}</h2>
+  <div class="p-6">
+    <h1 class="text-2xl font-bold mb-4">Product List</h1>
 
-      <span
-        v-if="stockQuantity === 0"
-        class="bg-red-600 text-white text-xs px-2 py-1 rounded-full absolute top-3 right-3"
-      >
-        Out of Stock
-      </span>
-    </div>
+    <!-- Loading State -->
+    <div v-if="loading" class="text-gray-500">Loading products...</div>
 
-    <p class="text-gray-600 mt-1 text-sm">
-      Category:
-      <span class="font-medium text-gray-800">{{ category }}</span>
-    </p>
+    <!-- Error State -->
+    <div v-else-if="error" class="text-red-500">Error: {{ error }}</div>
 
-    <div class="mt-3">
-      <p class="text-lg font-bold text-green-700">₹{{ price }}</p>
-    </div>
-
-    <div class="mt-2">
-      <span
-        v-if="stockQuantity > 0"
-        :class="stockBadgeClass"
-        class="px-2 py-1 rounded-full text-xs font-semibold"
-      >
-        Stock: {{ stockStatus }}
-      </span>
+    <!-- Product Grid -->
+    <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <ProductCard
+        v-for="product in products"
+        :key="product.id"
+        :name="product.name"
+        :price="product.price"
+        :stockQuantity="product.stockQuantity"
+        :category="product.category"
+        :image="product.image"
+      />
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import ProductCard from "./ProductCard.vue";
+
 export default {
-  name: "ProductCard",
-  props: {
-    name: {
-      type: String,
-      required: true,
-    },
-    price: {
-      type: Number,
-      required: true,
-    },
-    stockQuantity: {
-      type: Number,
-      required: true,
-    },
-    category: {
-      type: String,
-      required: true,
-    },
+  name: "ProductList",
+  components: {
+    ProductCard,
   },
-  computed: {
-    stockStatus() {
-      if (this.stockQuantity === 0) return "Out of Stock";
-      if (this.stockQuantity > 10 && this.stockQuantity <= 20) return "Medium";
-      if (this.stockQuantity > 20) return "High";
-      return "Low"; // 1–10
-    },
-    stockBadgeClass() {
-      if (this.stockQuantity > 10 && this.stockQuantity <= 20)
-        return "bg-yellow-400 text-black";
-      if (this.stockQuantity > 20)
-        return "bg-red-500 text-white";
-      return "bg-green-500 text-white"; // 1–10
+  data() {
+    return {
+      products: [],
+      loading: true,
+      error: null,
+    };
+  },
+  mounted() {
+    this.fetchProducts();
+  },
+  methods: {
+    async fetchProducts() {
+      try {
+        // const response = await axios.get("https://your-api-url.com/products");
+        this.products = [
+          {
+            id: 1,
+            name: "Gaming Keyboard",
+            price: 2999,
+            stockQuantity: 14,
+            category: "Accessories",
+            image: "https://example.com/images/keyboard.jpg",
+          },
+        ]; // Assuming backend returns an array
+      } catch (err) {
+        this.error = err.message || "Failed to fetch products.";
+      } finally {
+        this.loading = false;
+      }
     },
   },
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
