@@ -55,16 +55,24 @@
 <script setup>
 import { ref, computed } from "vue";
 import CategoryCard from "../components/Category/CategoryCard.vue";
+import healthImg from "../assets/health.png";
+import accessariesImg from "../assets/accessaries.avif";
+import furnitureImg from "../assets/furniture.webp";
+import kitchenImg from "../assets/kitchen.jpg";
+import footwearImg from "../assets/footwear.png";
+import clothingImg from "../assets/clothing.png";
+import electronicsImg from "../assets/electronics.jpg";
+import stationaryImg from "../assets/stationary.webp";
 
 const categories = ref([
-  { id: 1, name: "Health", image: "https://via.placeholder.com/300x200" },
-  { id: 2, name: "Accessories", image: "https://via.placeholder.com/300x200" },
-  { id: 3, name: "Furniture", image: "https://via.placeholder.com/300x200" },
-  { id: 4, name: "Kitchen", image: "https://via.placeholder.com/300x200" },
-  { id: 5, name: "Footwear", image: "https://via.placeholder.com/300x200" },
-  { id: 6, name: "Clothing", image: "https://via.placeholder.com/300x200" },
-  { id: 7, name: "Electronics", image: "https://via.placeholder.com/300x200" },
-  { id: 8, name: "Stationery", image: "https://via.placeholder.com/300x200" },
+  { id: 1, name: "Health", image: healthImg },
+  { id: 2, name: "Accessories", image: accessariesImg },
+  { id: 3, name: "Furniture", image: furnitureImg },
+  { id: 4, name: "Kitchen", image: kitchenImg },
+  { id: 5, name: "Footwear", image: footwearImg },
+  { id: 6, name: "Clothing", image: clothingImg },
+  { id: 7, name: "Electronics", image: electronicsImg },
+  { id: 8, name: "Stationery", image: stationaryImg },
 ]);
 
 const featuredCategories = ref(categories.value.slice(0, 3));

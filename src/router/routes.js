@@ -6,9 +6,11 @@ import ProductByCategory from "../components/Category/ProductByCategory.vue";
 import AddProduct from "../components/products/AddProduct.vue";
 import Cart from "../components/Cart.vue";
 import SignIn from "../components/SignIn.vue";
+import SignUp from "../components/SignUp.vue";
 
 const routes = [
   { path: "/login", name: "SignIn", component: SignIn },
+  { path: "/signup", name: "SignUp", component: SignUp },
   { path: "/", name: "Landing", component: WelcomeItem },
   { path: "/home", name: "Home", component: Home },
   { path: "/product-list", name: "Products", component: ProductList },

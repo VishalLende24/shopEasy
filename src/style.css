@@ -1,6 +1,6 @@
 @import "tailwindcss";
 body {
-  @apply min-h-screen bg-gradient-to-br from-blue-100 via-white to-blue-200;
+  @apply min-h-screen bg-gradient-to-br from-gray-200 via-white to-blue-100;
 }
 
 .navbar {

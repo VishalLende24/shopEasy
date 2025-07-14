@@ -31,23 +31,34 @@
         <button
           class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
           :disabled="product.stock === 0"
+          @click="addToCart(product)"
         >
-          View Product
+          Add to Cart
         </button>
       </div>
+    </div>
+    <div
+      v-if="showSignInPrompt"
+      class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50"
+    >
+      <SignInToAddToCart />
     </div>
   </section>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
+import SignInToAddToCart from "../SignInToAddToCart.vue";
 
+const props = defineProps({ isLoggedIn: Boolean });
 const route = useRoute();
+const router = useRouter();
 const categoryName = route.params.categoryName;
 
 const products = ref([]);
 const loading = ref(true);
+const showSignInPrompt = ref(false);
 
 onMounted(async () => {
   try {
@@ -100,5 +111,21 @@ function stockBadgeClass(quantity) {
   if (quantity > 20) return "bg-green-600";
   if (quantity >= 10) return "bg-yellow-500";
   return "bg-red-500";
+}
+
+function addToCart(product) {
+  if (!props.isLoggedIn) {
+    showSignInPrompt.value = true;
+    return;
+  }
+  // Dummy add to cart logic
+  alert(`Added ${product.name} to cart!`);
+}
+
+function goToSignIn() {
+  router.push("/login");
+}
+function goToSignUp() {
+  router.push("/signup");
 }
 </script>
