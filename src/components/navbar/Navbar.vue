@@ -2,9 +2,7 @@
   <header class="bg-white shadow sticky top-0 z-50 relative">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <div class="flex items-center space-x-4">
-        <router-link to="/" class="text-2xl font-bold text-indigo-600">
-          ShopEase
-        </router-link>
+        <router-link to="/" class="text-2xl font-bold text-indigo-600"> ShopEase </router-link>
 
         <button @click="isOpen = !isOpen" class="md:hidden text-2xl">
           <span v-if="!isOpen">☰</span>
@@ -26,11 +24,7 @@
       </nav>
 
       <div class="hidden md:flex items-center space-x-4">
-        <input
-          type="text"
-          placeholder="Search..."
-          class="px-3 py-1.5 border rounded-md"
-        />
+        <input type="text" placeholder="Search..." class="px-3 py-1.5 border rounded-md" />
         <!-- <router-link
           to="/login"
           class="text-lg px-4 py-2 bg-white text-indigo-600 border border-indigo-600 rounded hover:bg-indigo-50"
@@ -56,10 +50,7 @@
     </router-link>
 
     <!-- Mobile Navigation Dropdown -->
-    <div
-      v-if="isOpen"
-      class="md:hidden bg-white px-6 pb-4 flex flex-col gap-3 border-t"
-    >
+    <div v-if="isOpen" class="md:hidden bg-white px-6 pb-4 flex flex-col gap-3 border-t">
       <router-link
         v-for="(link, index) in navLinks"
         :key="index"
@@ -73,11 +64,7 @@
       </router-link>
 
       <div class="mt-2 flex flex-col gap-2">
-        <input
-          type="text"
-          placeholder="Search..."
-          class="px-3 py-2 border rounded-md"
-        />
+        <input type="text" placeholder="Search..." class="px-3 py-2 border rounded-md" />
         <!-- <router-link
           to="/login"
           class="text-left text-indigo-600 border border-indigo-600 px-3 py-2 rounded"
@@ -105,8 +92,8 @@ const isOpen = ref(false);
 const navLinks = [
   { name: "Home", path: "/home", exact: true },
   { name: "Shop", path: "/product-list" },
-//   { name: "About", path: "/about" },
+  //   { name: "About", path: "/about" },
   { name: "Contact", path: "/contact" },
-  { name: "Sell", path: "/sell" },
+  { name: "Sell", path: "/add-product" },
 ];
 </script>
